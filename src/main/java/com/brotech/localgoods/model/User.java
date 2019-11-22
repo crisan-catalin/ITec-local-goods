@@ -112,12 +112,12 @@ public class User {
         this.distributedOrders = distributedOrders;
     }
 
-    public Boolean getSeller() {
+    public Boolean getIsSeller() {
         return isSeller;
     }
 
-    public void setSeller(Boolean seller) {
-        isSeller = seller;
+    public void setIsSeller(Boolean seller) {
+        this.isSeller = seller;
     }
 
     public UserType getType() {
