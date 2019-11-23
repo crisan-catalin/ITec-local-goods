@@ -31,7 +31,6 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private DeliveryStatus deliveryStatus;
 
-    @NotNull
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private Set<OrderEntry> orderEntries;
 
