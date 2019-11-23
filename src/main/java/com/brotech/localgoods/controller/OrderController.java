@@ -4,6 +4,7 @@ import com.brotech.localgoods.constants.Session;
 import com.brotech.localgoods.constants.Views;
 import com.brotech.localgoods.dto.CartElementDto;
 import com.brotech.localgoods.dto.SessionUserDto;
+import com.brotech.localgoods.service.OrderEntryService;
 import com.brotech.localgoods.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,9 +22,13 @@ import java.util.List;
 public class OrderController {
 
     private static final String ORDERS = "orders";
+    private static final String ORDER_ENTRIES = "orderEntries";
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private OrderEntryService orderEntryService;
 
     @PostMapping("/place")
     public String placeOrder(HttpSession session) {
@@ -47,6 +52,17 @@ public class OrderController {
         if (sessionUserDto != null && !sessionUserDto.getIsSeller()) {
             model.addAttribute(ORDERS, orderService.getHistory(sessionUserDto.getId()));
             return Views.ORDERS_HISTORY;
+        } else {
+            return Views.REDIRECT;
+        }
+    }
+
+    @GetMapping("/seller-history")
+    public String getSellerHistory(Model model, HttpSession session) {
+        SessionUserDto sessionUserDto = (SessionUserDto) session.getAttribute(Session.USER);
+        if (sessionUserDto != null && sessionUserDto.getIsSeller()) {
+            model.addAttribute(ORDER_ENTRIES, orderEntryService.findAllBySellerId(sessionUserDto.getId()));
+            return Views.ORDER_ENTRIES_HISTORY;
         } else {
             return Views.REDIRECT;
         }

@@ -15,4 +15,5 @@ public class Views {
     public static final String ORDER_PLACED = "order_placed";
     public static final String REDIRECT = "redirect:/";
     public static final String ORDERS_HISTORY = "orders_history";
+    public static final String ORDER_ENTRIES_HISTORY = "order_entries_history";
 }

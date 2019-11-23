@@ -15,4 +15,6 @@ public interface ProductService {
     List<CartElementDto> getCartElements(List<AddToCartForm> cartProdycts);
 
     int calculateTotalPrice(List<CartElementDto> cartElements);
+
+    List<Product> findAllBySellerId(Long sellerId);
 }
