@@ -7,6 +7,8 @@ import com.brotech.localgoods.dto.SessionUserDto;
 import com.brotech.localgoods.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -17,6 +19,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/orders")
 public class OrderController {
+
+    private static final String ORDERS = "orders";
 
     @Autowired
     private OrderService orderService;
@@ -32,6 +36,17 @@ public class OrderController {
             } else {
                 return Views.EMPTY_CART;
             }
+        } else {
+            return Views.REDIRECT;
+        }
+    }
+
+    @GetMapping("/history")
+    public String getHistory(Model model, HttpSession session) {
+        SessionUserDto sessionUserDto = (SessionUserDto) session.getAttribute(Session.USER);
+        if (sessionUserDto != null && !sessionUserDto.getIsSeller()) {
+            model.addAttribute(ORDERS, orderService.getHistory(sessionUserDto.getId()));
+            return Views.ORDERS_HISTORY;
         } else {
             return Views.REDIRECT;
         }
