@@ -14,4 +14,5 @@ public class Views {
     public static final String EMPTY_CART = "emptyCart";
     public static final String ORDER_PLACED = "order_placed";
     public static final String REDIRECT = "redirect:/";
+    public static final String ORDERS_HISTORY = "orders_history";
 }

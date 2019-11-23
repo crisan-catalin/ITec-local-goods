@@ -31,6 +31,10 @@ public class OrderService {
         return orderRepository.save(order);
     }
 
+    public List<Order> getHistory(Long customerId){
+        return orderRepository.findAllByCustomer_Id(customerId);
+    }
+
     public void placeOrder(List<CartElementDto> cartElements, SessionUserDto sessionUserDto) {
         User user = userService.getUserById(sessionUserDto.getId());
         Order order = new Order();
