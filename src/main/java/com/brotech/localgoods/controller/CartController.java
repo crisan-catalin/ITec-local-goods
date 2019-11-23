@@ -34,6 +34,7 @@ public class CartController {
             if (sessionOrderEntries != null && !sessionOrderEntries.isEmpty()) {
                 List<CartElementDto> cartElements = productService.getCartElements(sessionOrderEntries);
                 model.addAttribute(CART_PRODUCTS, cartElements);
+                session.setAttribute(Session.CART_ELEMENTS, cartElements);
                 model.addAttribute(CART_TOTAL_PRICE, productService.calculateTotalPrice(cartElements));
             }
             return Views.CART;

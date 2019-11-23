@@ -4,6 +4,7 @@ import com.brotech.localgoods.enums.UserType;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Set;
 
 @Entity(name = "users")
@@ -45,8 +46,8 @@ public class User {
     @OneToMany(mappedBy = "customer")
     private Set<Order> placedOrders;
 
-    @OneToMany(mappedBy = "seller")
-    private Set<Order> distributedOrders;
+    @OneToMany(mappedBy = "user")
+    private List<Product> products;
 
     public Long getId() {
         return id;
@@ -102,14 +103,6 @@ public class User {
 
     public void setPlacedOrders(Set<Order> placedOrders) {
         this.placedOrders = placedOrders;
-    }
-
-    public Set<Order> getDistributedOrders() {
-        return distributedOrders;
-    }
-
-    public void setDistributedOrders(Set<Order> distributedOrders) {
-        this.distributedOrders = distributedOrders;
     }
 
     public Boolean getIsSeller() {
