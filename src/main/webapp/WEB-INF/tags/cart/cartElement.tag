@@ -1,27 +1,24 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ attribute name="cartElement" required="true" type="com.brotech.localgoods.model.Product" %>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ attribute name="product" required="true" type="com.brotech.localgoods.model.Product" %>
-
-<div class="row mb-5">
-    <div class="col-12 col-md-8 offset-md-4 col-lg-6 offset-lg-4">
-        <div class="product-card p-3 mt-2">
-            <div class="row">
-                <div class="col-8">
-                    <b>#${product.name}</b>
-                    <div class="pt-2 d-flex justify-content-between">
-                        <div class="d-flex flex-column">
-                            <span class="text-right">starting from ${product.priceIntervals[0].price} RON</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4 d-flex align-items-center">
-                    <a href="/products/details/${product.id}">
-                        <button type="button" class="btn btn-info">Details</button>
-                    </a>
-                </div>
-            </div>
+<div class="row">
+    <div class="col-3"><img class="img-responsive" src="https://placehold.it/100x70">
+    </div>
+    <div class="col-4">
+        <h4 class="product-name"><strong>Product name</strong></h4>
+        <h4>
+            <small>Product description</small>
+        </h4>
+    </div>
+    <div class="col-5">
+        <div class="col-xs-6 text-right">
+            <h6><strong>25.00 <span class="text-muted">x</span></strong></h6>
+        </div>
+        <div class="col-xs-4">
+            <input type="text" class="form-control input-sm" value="1">
+        </div>
+        <div class="col-xs-2 text-right">
+            <button type="button" class="btn btn-link btn-xs text-danger">
+                <span class="glyphicon glyphicon-trash">Remove</span>
+            </button>
         </div>
     </div>
 </div>
+<hr>
