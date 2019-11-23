@@ -1,4 +1,6 @@
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="formm" uri="http://www.springframework.org/tags/form" %>
 
 <jsp:include page="header.jsp"></jsp:include>
 
@@ -6,39 +8,37 @@
     <div class="row">
         <div class="col-12">
             <h1>Add new product</h1>
-            <form [formgroup]="adForm" (ngsubmit)="onSendAd()">
-
+            <form:form method="post" action="/products/add" modelAttribute="CreateProductForm">
                 <div class="form-group">
                     <label>Title</label>
-                    <input type="text" class="form-control" formcontrolname="title" value="">
+                    <form:input type="text" class="form-control" path="title"/>
                 </div>
 
-                <div class="panel panel-default">
-                    <div class="panel-heading">Description</div>
-                    <textarea class="form-control" rows="5" [spellcheck]="false" formcontrolname="description"
-                              value="{{ad?.description}}"></textarea>
+                <div class="form-group">
+                    <label>Description</label>
+                    <form:textarea cssClass="form-control" path="description"/>
                 </div>
 
                 <div class="form-group">
                     <label>Category</label>
-                    <select class="form-control" formcontrolname="category">
+                    <form:select class="form-control" formcontrolname="category" path="categoryId">
                         <c:forEach var="supercategory_entry" items="${categories_grouped}">
                             <optgroup label="${supercategory_entry.key.name}">
                                 <c:forEach var="category" items="${supercategory_entry.value}">
-                                    <option value="${category.id}">${category.name}</option>
+                                    <form:option value="${category.id}">${category.name}</form:option>
                                 </c:forEach>
                             </optgroup>
                         </c:forEach>
-                    </select>
+                    </form:select>
                 </div>
 
                 <div class="form-group">
                     <label>Choose unit of the product</label>
-                    <select class="form-control" formcontrolname="category">
+                    <form:select class="form-control" formcontrolname="category" path="unitType">
                         <c:forEach var="unit_type" items="${product_units}">
-                            <option value="${unit_type}">${unit_type}</option>
+                            <form:option value="${unit_type}">${unit_type}</form:option>
                         </c:forEach>
-                    </select>
+                    </form:select>
                 </div>
 
                 <div>
@@ -46,13 +46,16 @@
                     <div class="js-add-price-interval-container">
                         <div class="row align-items-end">
                             <div class="form-group col-3">
-                                <label>From</label> <input type="text" class="form-control" placeholder="1 unit">
+                                <label>From</label> <input name="priceIntervals[0].intervalMin" type="text"
+                                                           class="form-control" placeholder="1 unit">
                             </div>
                             <div class="form-group col-3">
-                                <label>to</label> <input type="text" class="form-control" placeholder="20 units">
+                                <label>to</label> <input name="priceIntervals[0].intervalMax" type="text"
+                                                         class="form-control" placeholder="20 units">
                             </div>
                             <div class="form-group col-3">
-                                <label>price is</label> <input type="text" class="form-control" placeholder="35 RON">
+                                <label>price is</label> <input name="priceIntervals[0].price" type="text"
+                                                               class="form-control" placeholder="35 RON">
                             </div>
                             <div class="form-group col-3">
                                 <button class="js-add-price-interval-button btn btn-info">Add price interval</button>
@@ -71,9 +74,9 @@
                     </div>
                 </div>
                 <div class="pt-2">
-                    <button class="btn btn-success btn-lg btn-block">Confirm</button>
+                    <button type="submit" class="btn btn-success btn-lg btn-block">Confirm</button>
                 </div>
-            </form>
+            </form:form>
         </div>
     </div>
 </div>
