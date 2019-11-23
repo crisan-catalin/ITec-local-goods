@@ -2,14 +2,14 @@ package com.brotech.localgoods.form;
 
 public class AddToCartForm {
 
-    private String productId;
+    private Long productId;
     private int quantity;
 
-    public String getProductId() {
+    public Long getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(Long productId) {
         this.productId = productId;
     }
 

@@ -35,6 +35,7 @@
                     <p>${productDetails.description}</p>
                 </li>
                 <form:form method="post" action="/order-entry/add" modelAttribute="addToCartForm">
+                    <form:input type="hidden" id="productId" path="productId" value="${productDetails.id}" required="required"/>
                     <div class="form-group">
                         <label for="quantity">Quantity:</label>
                         <form:input class="form-control w-50" id="quantity" path="quantity" required="required"/>
