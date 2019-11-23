@@ -3,6 +3,8 @@ package com.brotech.localgoods.controller;
 import com.brotech.localgoods.constants.Views;
 import com.brotech.localgoods.enums.UnitType;
 import com.brotech.localgoods.form.CreateProductForm;
+import com.brotech.localgoods.model.Picture;
+import com.brotech.localgoods.model.PriceInterval;
 import com.brotech.localgoods.model.Product;
 import com.brotech.localgoods.repository.CategoryRepository;
 import com.brotech.localgoods.repository.ProductRepository;
@@ -11,6 +13,7 @@ import com.brotech.localgoods.service.impl.DefaultProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -60,7 +63,7 @@ public class ProductController {
     }
 
     @PostMapping("/add")
-    public void createProduct(@ModelAttribute(CREATE_PRODUCT_FORM) CreateProductForm form, @RequestParam("files") MultipartFile[] files) {
+    public String createProduct(@ModelAttribute(CREATE_PRODUCT_FORM) CreateProductForm form, @RequestParam("files") MultipartFile[] files) {
         List<String> productImagesPath = new ArrayList<>(files.length);
 
         final String pathToUploadsDir = request.getServletContext().getRealPath(UPLOADS_DIR);
@@ -76,16 +79,32 @@ public class ProductController {
                 file.transferTo(new File(filePath));
             }
         } catch (Exception e) {
+            return ERROR_PAGE;
         }
 
         Product product = new Product();
         product.setName(form.getTitle());
         product.setDescription(form.getDescription());
         product.setUnitType(form.getUnitType());
+        for (PriceInterval priceInterval : form.getPriceIntervals()) {
+            priceInterval.setProduct(product);
+        }
         product.setPriceIntervals(form.getPriceIntervals());
         product.setCategory(categoryRepository.findById(form.getCategoryId()).orElse(null));
         product.setStock(form.getStock());
+        if (!CollectionUtils.isEmpty(productImagesPath)) {
+            List<Picture> pictureList = new ArrayList<>(productImagesPath.size());
+            for (String imagePath : productImagesPath) {
+                Picture productPicture = new Picture();
+                productPicture.setPath(imagePath);
+                productPicture.setProduct(product);
+                pictureList.add(productPicture);
+            }
+            product.setPictures(pictureList);
+        }
+
         productRepository.save(product);
+        return "/" + Views.PRODUCTS_PAGE;
     }
 
     @GetMapping("/list")

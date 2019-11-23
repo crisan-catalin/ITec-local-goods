@@ -21,6 +21,9 @@ public class Product {
     @Column
     private String description;
 
+    @OneToMany(mappedBy = "product")
+    private List<Picture> pictures;
+
     @NotNull
     @Column
     private Long stock;
@@ -39,6 +42,14 @@ public class Product {
 
     @OneToMany(mappedBy = "product")
     private List<OrderEntry> orderEntries;
+
+    public List<Picture> getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(List<Picture> pictures) {
+        this.pictures = pictures;
+    }
 
     public Long getId() {
         return id;
