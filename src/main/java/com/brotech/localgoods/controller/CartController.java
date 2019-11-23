@@ -39,7 +39,7 @@ public class CartController {
             }
             return Views.CART;
         } else {
-            return Views.LOGIN_PAGE;
+            return Views.REDIRECT;
         }
     }
 }

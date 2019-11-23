@@ -119,7 +119,7 @@ public class ProductController {
                 pictureRepository.save(productPicture);
             }
         }
-        return "/" + Views.PRODUCTS_PAGE;
+        return Views.REDIRECT + "products/list";
     }
 
     @GetMapping("/list")

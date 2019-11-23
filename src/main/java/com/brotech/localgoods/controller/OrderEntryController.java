@@ -37,10 +37,10 @@ public class OrderEntryController {
             }
 
             session.setAttribute(Session.ORDER_ENTRIES, sessionOrderEntries);
-            return "/" + Views.PRODUCTS_PAGE;
+            return Views.REDIRECT + "products/list";
         } else {
             model.addAttribute(LOG_IN_USER_FORM, new LogInUserForm());
-            return Views.LOGIN_PAGE;
+            return Views.REDIRECT;
         }
     }
 }

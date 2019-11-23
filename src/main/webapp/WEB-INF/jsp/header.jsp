@@ -31,7 +31,7 @@
                 ${sessionOrderEntries.size()}
                 <small>items</small>
             </c:if>
-            <a class="p-2 text-dark" href="#">
+            <a class="p-2 text-dark" href="/cart">
                 <i class="fas fa-shopping-cart pr-md-2"></i> Place an order
             </a>
         </div>

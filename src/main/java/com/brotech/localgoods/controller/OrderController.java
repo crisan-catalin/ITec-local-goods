@@ -7,7 +7,7 @@ import com.brotech.localgoods.dto.SessionUserDto;
 import com.brotech.localgoods.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
@@ -21,7 +21,7 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @GetMapping("/place")
+    @PostMapping("/place")
     public String placeOrder(HttpSession session) {
         SessionUserDto sessionUserDto = (SessionUserDto) session.getAttribute(Session.USER);
         if (sessionUserDto != null) {
@@ -33,7 +33,7 @@ public class OrderController {
                 return Views.EMPTY_CART;
             }
         } else {
-            return Views.LOGIN_PAGE;
+            return Views.REDIRECT;
         }
     }
 }

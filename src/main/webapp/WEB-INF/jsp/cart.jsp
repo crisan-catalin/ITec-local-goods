@@ -20,7 +20,7 @@
                         </div>
                         <div class="panel-body">
                             <c:forEach items="${cartProducts}" var="cartElement">
-                                <cart:cartElement product="${cartElement}"/>
+                                <cart:cartElement cartElement="${cartElement}"/>
                             </c:forEach>
                         </div>
                         <div class="panel-footer align-right">
