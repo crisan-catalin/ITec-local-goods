@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-12">
             <h1>Add new product</h1>
-            <form:form method="post" action="/products/add" modelAttribute="CreateProductForm">
+            <form:form method="post" action="/products/add" modelAttribute="CreateProductForm" enctype="multipart/form-data">
                 <div class="form-group">
                     <label>Title</label>
                     <form:input type="text" class="form-control" path="title"/>
@@ -41,20 +41,25 @@
                     </form:select>
                 </div>
 
+                <div class="form-group">
+                    <label>Stock units</label>
+                    <form:input type="text" class="form-control" path="stock"/>
+                </div>
+
                 <div>
                     <label>Price intervals</label>
                     <div class="js-add-price-interval-container">
                         <div class="row align-items-end">
                             <div class="form-group col-3">
-                                <label>From</label> <input name="priceIntervals[0].intervalMin" type="text"
+                                <label>From</label> <input name="priceIntervals[0].intervalMin" required type="text"
                                                            class="form-control" placeholder="1 unit">
                             </div>
                             <div class="form-group col-3">
-                                <label>to</label> <input name="priceIntervals[0].intervalMax" type="text"
+                                <label>to</label> <input name="priceIntervals[0].intervalMax" required type="text"
                                                          class="form-control" placeholder="20 units">
                             </div>
                             <div class="form-group col-3">
-                                <label>price is</label> <input name="priceIntervals[0].price" type="text"
+                                <label>price is</label> <input name="priceIntervals[0].price" required type="text"
                                                                class="form-control" placeholder="35 RON">
                             </div>
                             <div class="form-group col-3">
@@ -67,7 +72,7 @@
                     <label>Photos</label>
                     <div class="row">
                         <div>
-                            <input type="file" multiple class="js-add-product btn"/>
+                            <input type="file" multiple class="js-add-product btn" name="files"/>
                         </div>
                         <div class="js-product-gallery row col-12 pt-2">
                         </div>
