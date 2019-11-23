@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"
           integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
     <link rel="stylesheet" href="/resources/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.css">
 </head>
 
 <body class="d-flex flex-column">
@@ -26,6 +27,10 @@
 
     <div class="d-flex flex-column flex-md-row align-self-center align-items-center">
         <div class="mr-md-4">
+            <c:if test="${not empty sessionOrderEntries}">
+                ${sessionOrderEntries.size()}
+                <small>items</small>
+            </c:if>
             <a class="p-2 text-dark" href="#">
                 <i class="fas fa-shopping-cart pr-md-2"></i> Place an order
             </a>

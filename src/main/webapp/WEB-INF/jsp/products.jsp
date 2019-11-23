@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="product" tagdir="/WEB-INF/tags/products" %>
+<%@ taglib prefix="product" tagdir="/WEB-INF/tags/product" %>
 
 
 <jsp:include page="header.jsp"></jsp:include>
