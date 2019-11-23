@@ -53,14 +53,20 @@
                                         Welcome <b class="pr-2 my-2 my-md-0"> ${sessionUser.name}</b>
                     </span>
                     <div class="dropdown-menu" aria-labelledby="userpanel-dropdown">
-                        <a class="dropdown-item" href="#">Pending orders</a>
-                        <a class="dropdown-item" href="#">Orders history</a>
+                        <c:choose>
+                            <c:when test="${!sessionUser.isSeller}">
+                                <a class="dropdown-item" href="/orders/history"><span class="oi oi-timer"> Orders history</a>
+                            </c:when>
+                            <c:otherwise>
+                                <a class="dropdown-item" href="/products/add"><span class="oi oi-plus"></span> Add new product</a>
+                                <a class="dropdown-item" href="/orders/for-delivery"><span class="oi oi-timer"></span> Orders to deliver</a>
+                            </c:otherwise>
+                        </c:choose>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Browse open orders</a>
-                        <a class="dropdown-item" href="#">Orders to deliver</a>
+                        <a class="dropdown-item" href="/account"><span class="oi oi-person"></span> My profile</a>
                     </div>
                 </div>
-                <a class="btn btn-outline-primary" href="/logout">Logout</a>
+                <a class="btn btn-outline-primary" href="/logout"><span class="oi oi-power-standby"></span> Logout</a>
             </c:otherwise>
         </c:choose>
     </div>
