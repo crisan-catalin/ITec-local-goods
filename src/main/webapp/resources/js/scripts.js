@@ -44,3 +44,8 @@ $('.js-add-product').on('change', function () {
   imagesPreview(this);
 });
 
+$('.js-change-distance-filter').on('change', function(e){
+  var rangeValue = e.target.value;
+  var unit = rangeValue >= 100 ? " km+" : " km";
+  $('.js-distance-filter-value').text(rangeValue + unit);
+});
