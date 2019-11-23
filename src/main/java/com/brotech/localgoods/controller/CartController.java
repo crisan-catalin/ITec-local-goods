@@ -35,10 +35,8 @@ public class CartController {
                 List<CartElementDto> cartElements = productService.getCartElements(sessionOrderEntries);
                 model.addAttribute(CART_PRODUCTS, cartElements);
                 model.addAttribute(CART_TOTAL_PRICE, productService.calculateTotalPrice(cartElements));
-                return Views.CART;
-            } else {
-                return Views.EMPTY_CART;
             }
+            return Views.CART;
         } else {
             return Views.LOGIN_PAGE;
         }
