@@ -60,6 +60,19 @@
                         </div>
                     </div>
                 </div>
+                <div>
+                    <label>Photos</label>
+                    <div class="row">
+                        <div>
+                            <input type="file" multiple class="js-add-product btn"/>
+                        </div>
+                        <div class="js-product-gallery row col-12 pt-2">
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-2">
+                    <button class="btn btn-success btn-lg btn-block">Confirm</button>
+                </div>
             </form>
         </div>
     </div>
