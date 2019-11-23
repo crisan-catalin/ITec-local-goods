@@ -4,7 +4,7 @@ import com.brotech.localgoods.enums.UnitType;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Set;
+import java.util.List;
 
 @Entity(name = "products")
 public class Product {
@@ -23,10 +23,6 @@ public class Product {
 
     @NotNull
     @Column
-    private Long price;
-
-    @NotNull
-    @Column
     private Long stock;
 
     @NotNull
@@ -39,10 +35,10 @@ public class Product {
     private Category category;
 
     @OneToMany(mappedBy = "product")
-    private Set<PriceInterval> priceIntervals;
+    private List<PriceInterval> priceIntervals;
 
     @OneToMany(mappedBy = "product")
-    private Set<OrderEntry> orderEntries;
+    private List<OrderEntry> orderEntries;
 
     public Long getId() {
         return id;
@@ -59,15 +55,6 @@ public class Product {
     public void setName(String name) {
         this.name = name;
     }
-
-    public Long getPrice() {
-        return price;
-    }
-
-    public void setPrice(Long price) {
-        this.price = price;
-    }
-
 
     public String getDescription() {
         return description;
@@ -101,20 +88,19 @@ public class Product {
         this.category = category;
     }
 
-    public Set<PriceInterval> getPriceIntervals() {
+    public List<PriceInterval> getPriceIntervals() {
         return priceIntervals;
     }
 
-    public void setPriceIntervals(Set<PriceInterval> priceIntervals) {
+    public void setPriceIntervals(List<PriceInterval> priceIntervals) {
         this.priceIntervals = priceIntervals;
     }
 
-    public Set<OrderEntry> getOrderEntries() {
+    public List<OrderEntry> getOrderEntries() {
         return orderEntries;
     }
 
-    public void setOrderEntries(Set<OrderEntry> orderEntries) {
+    public void setOrderEntries(List<OrderEntry> orderEntries) {
         this.orderEntries = orderEntries;
     }
-
 }
