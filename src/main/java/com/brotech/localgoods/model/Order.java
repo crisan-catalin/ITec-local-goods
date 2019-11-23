@@ -18,10 +18,6 @@ public class Order {
     @JoinColumn
     private User customer;
 
-    @ManyToOne
-    @JoinColumn
-    private User seller;
-
     @NotNull
     @Column
     private Long totalPrice;
@@ -53,14 +49,6 @@ public class Order {
 
     public void setCustomer(User customer) {
         this.customer = customer;
-    }
-
-    public User getSeller() {
-        return seller;
-    }
-
-    public void setSeller(User seller) {
-        this.seller = seller;
     }
 
     public Long getTotalPrice() {

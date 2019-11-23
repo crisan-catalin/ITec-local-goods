@@ -43,6 +43,10 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private List<OrderEntry> orderEntries;
 
+    @JoinColumn
+    @ManyToOne(cascade = CascadeType.ALL)
+    private User user;
+
     public List<Picture> getPictures() {
         return pictures;
     }
@@ -113,5 +117,13 @@ public class Product {
 
     public void setOrderEntries(List<OrderEntry> orderEntries) {
         this.orderEntries = orderEntries;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

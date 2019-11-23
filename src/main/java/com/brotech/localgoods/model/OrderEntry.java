@@ -26,6 +26,10 @@ public class OrderEntry {
     @Min(1)
     private int quantity;
 
+    @NotNull
+    @Column
+    private Long totalPrice;
+
     public Long getId() {
         return id;
     }
@@ -56,5 +60,13 @@ public class OrderEntry {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public Long getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Long totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }

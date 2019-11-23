@@ -12,4 +12,5 @@ public class Views {
     public static final String PAYMENT_PAGE = "payment";
     public static final String CART = "cart";
     public static final String EMPTY_CART = "emptyCart";
+    public static final String ORDER_PLACED = "orderPlaced";
 }
