@@ -7,10 +7,13 @@ import com.brotech.localgoods.model.Picture;
 import com.brotech.localgoods.model.PriceInterval;
 import com.brotech.localgoods.model.Product;
 import com.brotech.localgoods.repository.CategoryRepository;
+import com.brotech.localgoods.repository.PictureRepository;
+import com.brotech.localgoods.repository.PriceIntervalRepository;
 import com.brotech.localgoods.repository.ProductRepository;
 import com.brotech.localgoods.service.CategoryService;
 import com.brotech.localgoods.service.impl.DefaultProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.CollectionUtils;
@@ -54,6 +57,12 @@ public class ProductController {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private PictureRepository pictureRepository;
+
+    @Autowired
+    private PriceIntervalRepository priceIntervalRepository;
+
     @GetMapping("/add")
     public String addProduct(Model model) {
         model.addAttribute(CATEGORIES_GROUPED, categoryService.getAllCategoriesAndSubCategories());
@@ -92,18 +101,25 @@ public class ProductController {
         product.setPriceIntervals(form.getPriceIntervals());
         product.setCategory(categoryRepository.findById(form.getCategoryId()).orElse(null));
         product.setStock(form.getStock());
+        productRepository.save(product);
+
+        if (!CollectionUtils.isEmpty(form.getPriceIntervals())) {
+            for (PriceInterval priceInterval :
+                    form.getPriceIntervals()) {
+                priceInterval.setProduct(product);
+                priceIntervalRepository.save(priceInterval);
+            }
+        }
+
         if (!CollectionUtils.isEmpty(productImagesPath)) {
             List<Picture> pictureList = new ArrayList<>(productImagesPath.size());
             for (String imagePath : productImagesPath) {
                 Picture productPicture = new Picture();
                 productPicture.setPath(imagePath);
                 productPicture.setProduct(product);
-                pictureList.add(productPicture);
+                pictureList.add(pictureRepository.save(productPicture));
             }
-            product.setPictures(pictureList);
         }
-
-        productRepository.save(product);
         return "/" + Views.PRODUCTS_PAGE;
     }
 
