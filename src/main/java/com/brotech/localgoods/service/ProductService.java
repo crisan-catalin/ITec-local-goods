@@ -12,7 +12,7 @@ public interface ProductService {
 
     Product getProductDetails(Long prodctId);
 
-    List<Product> getCartProducts(List<AddToCartForm> cartProducts);
-
     List<CartElementDto> getCartElements(List<AddToCartForm> cartProdycts);
+
+    int calculateTotalPrice(List<CartElementDto> cartElements);
 }

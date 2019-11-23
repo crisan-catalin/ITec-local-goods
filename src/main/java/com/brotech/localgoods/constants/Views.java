@@ -9,5 +9,7 @@ public class Views {
     public static final String PRODUCT_DETAILS_PAGE = "product_details";
     public static final String PRODUCTS_PAGE = "products";
     public static final String ERROR_PAGE = "error";
-
+    public static final String PAYMENT_PAGE = "payment";
+    public static final String CART = "cart";
+    public static final String EMPTY_CART = "emptyCart";
 }
