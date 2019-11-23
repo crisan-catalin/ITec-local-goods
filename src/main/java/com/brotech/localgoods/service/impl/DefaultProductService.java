@@ -36,6 +36,11 @@ public class DefaultProductService implements ProductService {
         return cartElements;
     }
 
+    @Override
+    public List<Product> findAllBySellerId(Long sellerId) {
+        return productRepository.findAllByUser(sellerId);
+    }
+
     private Map<AddToCartForm, Product> getCartProducts(List<AddToCartForm> cartForms) {
         Map<AddToCartForm, Product> productsMap = new HashMap<>();
         cartForms.forEach(cartForm -> {
@@ -70,7 +75,7 @@ public class DefaultProductService implements ProductService {
         return totalPrice;
     }
 
-    public int calculateTotalPrice(List<CartElementDto> cartElements){
+    public int calculateTotalPrice(List<CartElementDto> cartElements) {
         return cartElements.stream().mapToInt(cartElement -> Math.toIntExact(cartElement.getTotalPrice())).sum();
     }
 }
