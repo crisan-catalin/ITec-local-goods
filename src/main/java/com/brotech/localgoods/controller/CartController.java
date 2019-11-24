@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
@@ -41,5 +43,19 @@ public class CartController {
         } else {
             return Views.REDIRECT;
         }
+    }
+
+    @PostMapping("/remove/{cartEntryProductId}")
+    public String removeCartEntry(@PathVariable("cartEntryProductId") Long cartEntryProductId, HttpSession session) {
+        SessionUserDto sessionUserDto = (SessionUserDto) session.getAttribute(Session.USER);
+        if (sessionUserDto != null) {
+            List<AddToCartForm> sessionOrderEntries = (ArrayList<AddToCartForm>) session.getAttribute(Session.ORDER_ENTRIES);
+            if (sessionOrderEntries != null && !sessionOrderEntries.isEmpty()) {
+                sessionOrderEntries.removeIf(cartEntry -> cartEntry.getProductId() == cartEntryProductId);
+                session.setAttribute(Session.ORDER_ENTRIES, sessionOrderEntries);
+                return Views.REDIRECT + "cart";
+            }
+        }
+        return Views.REDIRECT;
     }
 }
