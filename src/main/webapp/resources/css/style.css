@@ -235,21 +235,7 @@ main .section .section-content {
     width: 66%;
     margin-top: 40px;
 }
-.product-details .product-info .product-addtocart {
-    width: 66%;
-    margin: 20px 0 40px;
-}
-@media only screen and (max-width: 959px) {
-    .product-details .product-info .product-addtocart {
-        width: 33%;
-    }
-}
-.product-details .product-info .product-addtocart button {
 
-}
-.product-details .product-info .product-addtocart button:hover {
-    background: #1a1a1a;
-}
 .product-details .product-info .product-description {
     font-size: 15px;
 }
