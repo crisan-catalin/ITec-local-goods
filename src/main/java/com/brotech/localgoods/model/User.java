@@ -120,4 +120,20 @@ public class User {
     public void setType(UserType type) {
         this.type = type;
     }
+
+    public Boolean getSeller() {
+        return isSeller;
+    }
+
+    public void setSeller(Boolean seller) {
+        isSeller = seller;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
 }

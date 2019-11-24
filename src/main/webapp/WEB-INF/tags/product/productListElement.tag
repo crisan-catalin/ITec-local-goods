@@ -1,11 +1,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ attribute name="product" required="true" type="com.brotech.localgoods.model.Product" %>
 
-<div class="row mb-5">
+<div class="row mb-5 mr-5 border-bottom border-secondary">
     <div class="col-12">
-        <div class="product-card p-3 mt-2">
+        <div class="product-card py-3 mt-2">
             <div class="row">
-                <div class="col-8">
+                <div class="col-sm-2">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <img src="https://placehold.it/100x100" alt="" class="rounded img-responsive">
+                    </div>
+                </div>
+                <div class="col-6">
                     <b>#${product.name}</b>
                     <div class="pt-2 d-flex justify-content-between">
                         <div class="d-flex flex-column">
