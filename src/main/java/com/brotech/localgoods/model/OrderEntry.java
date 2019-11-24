@@ -1,5 +1,7 @@
 package com.brotech.localgoods.model;
 
+import com.brotech.localgoods.enums.DeliveryStatus;
+
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -29,6 +31,10 @@ public class OrderEntry {
     @NotNull
     @Column
     private Long totalPrice;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private DeliveryStatus deliveryStatus;
 
     public Long getId() {
         return id;
@@ -68,5 +74,13 @@ public class OrderEntry {
 
     public void setTotalPrice(Long totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public DeliveryStatus getDeliveryStatus() {
+        return deliveryStatus;
+    }
+
+    public void setDeliveryStatus(DeliveryStatus deliveryStatus) {
+        this.deliveryStatus = deliveryStatus;
     }
 }

@@ -4,6 +4,7 @@ import com.brotech.localgoods.constants.Session;
 import com.brotech.localgoods.constants.Views;
 import com.brotech.localgoods.dto.CartElementDto;
 import com.brotech.localgoods.dto.SessionUserDto;
+import com.brotech.localgoods.enums.DeliveryStatus;
 import com.brotech.localgoods.service.OrderEntryService;
 import com.brotech.localgoods.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,5 +82,23 @@ public class OrderController {
         } else {
             return Views.REDIRECT;
         }
+    }
+
+    @GetMapping("/to-be-delivered")
+    public String getOrdersToBeDelivered(Model model, HttpSession session) {
+        SessionUserDto sessionUserDto = (SessionUserDto) session.getAttribute(Session.USER);
+        if (sessionUserDto != null && sessionUserDto.getIsSeller()) {
+            model.addAttribute(ORDER_ENTRIES, orderEntryService.findAllBySellerIdToBeDelivered(sessionUserDto.getId()));
+            return Views.ORDER_ENTRIES_HISTORY;
+        } else {
+            return Views.REDIRECT;
+        }
+    }
+
+    @PostMapping("/changeStatus/{orderEntryId}/{deliveryStatus}")
+    public String createProduct(@PathVariable("orderEntryId") Long orderEntryId,
+                                @PathVariable("deliveryStatus") DeliveryStatus deliveryStatus) {
+        orderEntryService.changeOrderEntryStatus(orderEntryId, deliveryStatus);
+        return Views.REDIRECT + "orders/to-be-delivered";
     }
 }
