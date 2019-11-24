@@ -11,24 +11,24 @@
         <a href="/products/list"><span class="oi oi-map-marker mx-2 my-2"></span></a>
     </div>
 </div>
-<div class="container-fluid">
+
+<div class="container-fluid ${page_view_mode == 'LIST' ? 'flex-fill' : (page_view_mode == 'GRID' ? 'd-flex flex-wrap':'')}">
     <div class="row">
-        <div class="col-3">
+        <div class="col-4">
             <product:productFilter/>
         </div>
         <div class="col">
-            <div class="${isList == true ? 'flex-fill' : 'd-flex flex-wrap'}">
-                <c:forEach items="${productList}" var="product" varStatus="loopStatus">
-                    <c:choose>
-                        <c:when test="${isList}">
-                            <product:productListElement product="${product}"/>
-                        </c:when>
-                        <c:otherwise>
-                            <product:productGridElement product="${product}"/>
-                        </c:otherwise>
-                    </c:choose>
-                </c:forEach>
-            </div>
+            <c:forEach items="${productList}" var="product" varStatus="loopStatus">
+                <c:choose>
+                    <c:when test="${page_view_mode == 'LIST'}">
+                        <product:productListElement product="${product}"/>
+                    </c:when>
+                    <%--                    TODO:--%>
+                    <c:otherwise>
+                        <product:productGridElement product="${product}"/>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
         </div>
     </div>
 </div>

@@ -90,7 +90,7 @@ public class OrderController {
         SessionUserDto sessionUserDto = (SessionUserDto) session.getAttribute(Session.USER);
         if (sessionUserDto != null && sessionUserDto.getIsSeller()) {
             model.addAttribute(ORDER_ENTRIES, orderEntryService.findAllBySellerIdToBeDelivered(sessionUserDto.getId()));
-            return Views.ORDER_ENTRIES_HISTORY;
+            return Views.ORDER_ENTRIES_FOR_DELIVERY;
         } else {
             return Views.REDIRECT;
         }

@@ -7,6 +7,7 @@ import com.brotech.localgoods.repository.OrderEntryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -29,7 +30,7 @@ public class OrderEntryService {
 
     public List<OrderEntry> findAllBySellerIdToBeDelivered(Long sellerId) {
         List<Product> products = productService.findAllBySellerId(sellerId);
-        return orderEntryRepository.findAllByProductInAndAndDeliveryStatus(products, DeliveryStatus.PROCESSING);
+        return orderEntryRepository.findAllByProductInAndAndDeliveryStatusIn(products, Arrays.asList(DeliveryStatus.PROCESSING, DeliveryStatus.READY_TO_SHIP));
     }
 
     public void changeOrderEntryStatus(Long orderEntryId, DeliveryStatus deliveryStatus) {
