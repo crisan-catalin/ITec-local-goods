@@ -11,8 +11,9 @@ public class Picture {
     private Long id;
 
     @NotNull
-    @Column
-    private String path;
+    @Lob
+    @Column(length = 512)
+    private String content;
 
     @ManyToOne
     @JoinColumn
@@ -26,12 +27,12 @@ public class Picture {
         this.id = id;
     }
 
-    public String getPath() {
-        return path;
+    public String getContent() {
+        return content;
     }
 
-    public void setPath(String path) {
-        this.path = path;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public Product getProduct() {

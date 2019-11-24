@@ -7,7 +7,7 @@
             <img class="card-img-top" src="/resources/images/default.jpg" alt="product image cap">
         </c:when>
         <c:otherwise>
-            <img class="card-img-top" src="${product.pictures[0].path}" alt="product image cap">
+            <img class="card-img-top" src="data:image/jpeg;base64,${product.pictures[0].content}" alt="product image cap">
         </c:otherwise>
     </c:choose>
     <div class="card-body">

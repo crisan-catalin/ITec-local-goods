@@ -245,14 +245,7 @@ main .section .section-content {
     }
 }
 .product-details .product-info .product-addtocart button {
-    width: 100%;
-    cursor: pointer;
-    background: #000;
-    color: #fff;
-    display: block;
-    border: none;
-    outline: none;
-    padding: 10px;
+
 }
 .product-details .product-info .product-addtocart button:hover {
     background: #1a1a1a;

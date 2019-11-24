@@ -24,8 +24,8 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
-import java.util.UUID;
 
 import static com.brotech.localgoods.constants.Views.ERROR_PAGE;
 import static com.brotech.localgoods.constants.Views.PRODUCT_DETAILS_PAGE;
@@ -74,7 +74,7 @@ public class ProductController {
 
     @PostMapping("/add")
     public String createProduct(@ModelAttribute(CREATE_PRODUCT_FORM) CreateProductForm form, @RequestParam("files") MultipartFile[] files) {
-        List<String> productImagesPath = new ArrayList<>(files.length);
+        List<Picture> pictures = new ArrayList<>(files.length);
 
         final String pathToUploadsDir = request.getServletContext().getRealPath(UPLOADS_DIR);
         if (!new File(pathToUploadsDir).exists()) {
@@ -83,10 +83,11 @@ public class ProductController {
 
         try {
             for (MultipartFile file : files) {
-                String fileExtension = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
-                final String filePath = pathToUploadsDir + UUID.randomUUID() + fileExtension;
-                productImagesPath.add(filePath);
-                file.transferTo(new File(filePath));
+                byte[] pictureContent = file.getBytes();
+                String base64 = Base64.getEncoder().encodeToString(pictureContent);
+                Picture picture = new Picture();
+                picture.setContent(base64);
+                pictures.add(picture);
             }
         } catch (Exception e) {
             return ERROR_PAGE;
@@ -112,14 +113,9 @@ public class ProductController {
             }
         }
 
-        if (!CollectionUtils.isEmpty(productImagesPath)) {
-            for (String imagePath : productImagesPath) {
-                Picture productPicture = new Picture();
-                productPicture.setPath(imagePath);
-                productPicture.setProduct(product);
-                pictureRepository.save(productPicture);
-            }
-        }
+        pictures.forEach(picture -> picture.setProduct(product));
+        pictureRepository.saveAll(pictures);
+
         return Views.REDIRECT + "products/list";
     }
 
