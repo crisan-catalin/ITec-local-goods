@@ -1,7 +1,5 @@
 package com.brotech.localgoods.model;
 
-import com.brotech.localgoods.enums.DeliveryStatus;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
@@ -26,10 +24,6 @@ public class Order {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn
     private Address deliveryAddress;
-
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    private DeliveryStatus deliveryStatus;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private Set<OrderEntry> orderEntries;
@@ -64,14 +58,6 @@ public class Order {
 
     public void setDeliveryAddress(Address deliveryAddress) {
         this.deliveryAddress = deliveryAddress;
-    }
-
-    public DeliveryStatus getDeliveryStatus() {
-        return deliveryStatus;
-    }
-
-    public void setDeliveryStatus(DeliveryStatus deliveryStatus) {
-        this.deliveryStatus = deliveryStatus;
     }
 
     public Set<OrderEntry> getOrderEntries() {

@@ -1,5 +1,6 @@
 package com.brotech.localgoods.service;
 
+import com.brotech.localgoods.enums.DeliveryStatus;
 import com.brotech.localgoods.model.OrderEntry;
 import com.brotech.localgoods.model.Product;
 import com.brotech.localgoods.repository.OrderEntryRepository;
@@ -24,5 +25,16 @@ public class OrderEntryService {
     public List<OrderEntry> findAllBySellerId(Long sellertId) {
         List<Product> products = productService.findAllBySellerId(sellertId);
         return orderEntryRepository.findAllByProductIn(products);
+    }
+
+    public List<OrderEntry> findAllBySellerIdToBeDelivered(Long sellerId) {
+        List<Product> products = productService.findAllBySellerId(sellerId);
+        return orderEntryRepository.findAllByProductInAndAndDeliveryStatus(products, DeliveryStatus.PROCESSING);
+    }
+
+    public void changeOrderEntryStatus(Long orderEntryId, DeliveryStatus deliveryStatus) {
+        OrderEntry orderEntry = orderEntryRepository.findById(orderEntryId).get();
+        orderEntry.setDeliveryStatus(deliveryStatus);
+        save(orderEntry);
     }
 }

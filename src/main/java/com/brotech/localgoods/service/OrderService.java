@@ -40,7 +40,6 @@ public class OrderService {
         Order order = new Order();
         order.setCustomer(user);
         order.setDeliveryAddress(user.getAddress());
-        order.setDeliveryStatus(DeliveryStatus.PROCESSING);
         order.setTotalPrice(Long.valueOf(productService.calculateTotalPrice(cartElements)));
         save(order);
 
@@ -53,6 +52,7 @@ public class OrderService {
         orderEntry.setProduct(productService.getProductDetails(cartElementDto.getProductId()));
         orderEntry.setQuantity(cartElementDto.getQuantity());
         orderEntry.setTotalPrice(cartElementDto.getTotalPrice());
+        orderEntry.setDeliveryStatus(DeliveryStatus.PROCESSING);
         return orderEntry;
     }
 
