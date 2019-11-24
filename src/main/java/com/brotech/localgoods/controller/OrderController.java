@@ -42,9 +42,10 @@ public class OrderController {
             List<CartElementDto> cartElements = (ArrayList<CartElementDto>) session.getAttribute(Session.CART_ELEMENTS);
             if (cartElements != null && !cartElements.isEmpty()) {
                 orderService.placeOrder(cartElements, sessionUserDto);
+                session.removeAttribute(Session.CART_ELEMENTS);
                 return Views.ORDER_PLACED;
             } else {
-                return Views.EMPTY_CART;
+                return Views.REDIRECT + "cart";
             }
         } else {
             return Views.REDIRECT;
