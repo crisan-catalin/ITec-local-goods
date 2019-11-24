@@ -64,7 +64,7 @@
                             </c:otherwise>
                         </c:choose>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/account"><span class="oi oi-person"></span> My profile</a>
+                        <a class="dropdown-item" href="/user/account"><span class="oi oi-person"></span> My profile</a>
                     </div>
                 </div>
                 <a class="btn btn-outline-primary" href="/logout"><span class="oi oi-power-standby"></span> Logout</a>
