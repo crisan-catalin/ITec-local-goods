@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -17,12 +18,15 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.brotech.localgoods.constants.Views.ORDER_DETAILS_PAGE;
+
 @Controller
 @RequestMapping("/orders")
 public class OrderController {
 
     private static final String ORDERS = "orders";
     private static final String ORDER_ENTRIES = "orderEntries";
+    private static final String ORDER_DETAILS = "orderDetails";
 
     @Autowired
     private OrderService orderService;
@@ -52,6 +56,17 @@ public class OrderController {
         if (sessionUserDto != null && !sessionUserDto.getIsSeller()) {
             model.addAttribute(ORDERS, orderService.getHistory(sessionUserDto.getId()));
             return Views.ORDERS_HISTORY;
+        } else {
+            return Views.REDIRECT;
+        }
+    }
+
+    @GetMapping("/details/{orderId}")
+    public String getProdut(@PathVariable("orderId") Long orderId, Model model, HttpSession session) {
+        SessionUserDto sessionUserDto = (SessionUserDto) session.getAttribute(Session.USER);
+        if (sessionUserDto != null && !sessionUserDto.getIsSeller()) {
+            model.addAttribute(ORDER_DETAILS, orderService.findOrderById(orderId));
+            return ORDER_DETAILS_PAGE;
         } else {
             return Views.REDIRECT;
         }

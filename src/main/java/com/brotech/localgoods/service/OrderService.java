@@ -31,7 +31,7 @@ public class OrderService {
         return orderRepository.save(order);
     }
 
-    public List<Order> getHistory(Long customerId){
+    public List<Order> getHistory(Long customerId) {
         return orderRepository.findAllByCustomer_Id(customerId);
     }
 
@@ -54,5 +54,9 @@ public class OrderService {
         orderEntry.setQuantity(cartElementDto.getQuantity());
         orderEntry.setTotalPrice(cartElementDto.getTotalPrice());
         return orderEntry;
+    }
+
+    public Order findOrderById(Long orderId) {
+        return orderRepository.findById(orderId).get();
     }
 }
