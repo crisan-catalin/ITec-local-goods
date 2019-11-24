@@ -29,9 +29,9 @@
                             <td><a href="/orders/details/${order.id}">${order.id}</a></td>
                             <td>${order.deliveryAddress.city} ${order.deliveryAddress.street} ${order.deliveryAddress.number}</td>
                             <td>${order.totalPrice}</td>
-                            <td class="text-center font-weight-bold ${order.deliveryStatus eq 'PROCESSING' ? 'bg-info' : (order.deliveryStatus eq 'READY_TO_SHIP' ? 'table-warning' : 'table-success')}">${order.deliveryStatus}</td>
+                            <td class="text-center font-weight-bold ${order.orderEntries[0].deliveryStatus eq 'PROCESSING' ? 'bg-info' : (order.orderEntries[0].deliveryStatus eq 'READY_TO_SHIP' ? 'table-warning' : 'table-success')}">${order.orderEntries[0].deliveryStatus}</td>
                             <td>
-                                <a class="btn ${order.deliveryStatus eq 'PROCESSING' ? 'btn-outline-primary' : (order.deliveryStatus eq 'READY_TO_SHIP' ? 'btn-outline-warning' : 'btn-outline-success')}"
+                                <a class="btn ${order.orderEntries[0].deliveryStatus eq 'PROCESSING' ? 'btn-outline-primary' : (order.orderEntries[0].deliveryStatus eq 'READY_TO_SHIP' ? 'btn-outline-warning' : 'btn-outline-success')}"
                                    href="/orders/details/${order.id}">Details</a></td>
                         </tr>
                     </c:forEach>

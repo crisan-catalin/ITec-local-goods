@@ -30,7 +30,7 @@
                                 <small>(Qty x ${entry.quantity})</small>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <span>Price: ${product.price} $</span>
+                                <span>Price: ${entry.product.priceIntervals[0].price} RON</span>
                             </div>
                         </div>
                     </div>

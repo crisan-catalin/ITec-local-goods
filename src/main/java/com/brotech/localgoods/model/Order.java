@@ -2,7 +2,7 @@ package com.brotech.localgoods.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Set;
+import java.util.List;
 
 @Entity(name = "orders")
 public class Order {
@@ -26,7 +26,7 @@ public class Order {
     private Address deliveryAddress;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private Set<OrderEntry> orderEntries;
+    private List<OrderEntry> orderEntries;
 
     public Long getId() {
         return id;
@@ -60,11 +60,11 @@ public class Order {
         this.deliveryAddress = deliveryAddress;
     }
 
-    public Set<OrderEntry> getOrderEntries() {
+    public List<OrderEntry> getOrderEntries() {
         return orderEntries;
     }
 
-    public void setOrderEntries(Set<OrderEntry> orderEntries) {
+    public void setOrderEntries(List<OrderEntry> orderEntries) {
         this.orderEntries = orderEntries;
     }
 }

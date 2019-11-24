@@ -73,7 +73,7 @@ public class CheckoutController {
                 List<CartElementDto> cartElements = (ArrayList<CartElementDto>) session.getAttribute(Session.CART_ELEMENTS);
                 if (cartElements != null && !cartElements.isEmpty()) {
                     orderService.placeOrder(cartElements, sessionUserDto);
-                    session.removeAttribute(Session.CART_ELEMENTS);
+                    session.removeAttribute(Session.ORDER_ENTRIES);
                 }
 
                 chargeRequest.setDescription("Charge");
