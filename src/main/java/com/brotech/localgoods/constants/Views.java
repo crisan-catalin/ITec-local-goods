@@ -18,4 +18,5 @@ public class Views {
     public static final String ORDER_ENTRIES_HISTORY = "order_entries_history";
     public static final String ORDER_ENTRIES_FOR_DELIVERY = "order_entries_for_delivery";
     public static final String ORDER_DETAILS_PAGE = "order_details";
+    public static final String USER_PROFILE = "user_profile";
 }
