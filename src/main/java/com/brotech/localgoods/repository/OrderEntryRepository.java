@@ -11,5 +11,5 @@ public interface OrderEntryRepository extends CrudRepository<OrderEntry, Long> {
 
     List<OrderEntry> findAllByProductIn(List<Product> products);
 
-    List<OrderEntry> findAllByProductInAndAndDeliveryStatus(List<Product> products, DeliveryStatus deliveryStatus);
+    List<OrderEntry> findAllByProductInAndAndDeliveryStatusIn(List<Product> products, List<DeliveryStatus> deliveryStatuses);
 }

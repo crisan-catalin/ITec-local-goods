@@ -59,7 +59,7 @@
                             </c:when>
                             <c:otherwise>
                                 <a class="dropdown-item" href="/products/add"><span class="oi oi-plus"></span> Add new product</a>
-                                <a class="dropdown-item" href="/orders/for-delivery"><span class="oi oi-timer"></span> Orders to deliver</a>
+                                <a class="dropdown-item" href="/orders/to-be-delivered"><span class="oi oi-timer"></span> Orders to deliver</a>
                                 <a class="dropdown-item" href="/orders/seller-history"><span class="oi oi-header"></span></span> History of delivers</a>
                             </c:otherwise>
                         </c:choose>
