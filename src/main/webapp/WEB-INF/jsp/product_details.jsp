@@ -38,7 +38,7 @@
                     <form:input type="hidden" id="productId" path="productId" value="${productDetails.id}" required="required"/>
                     <div class="form-group">
                         <label for="quantity">Quantity:</label>
-                        <form:input class="form-control w-50" id="quantity" min="1" path="quantity" required="required"/>
+                        <form:input class="form-control w-50" id="quantity" min="1" value="1" path="quantity" required="required"/>
                     </div>
                     <li class="product-addtocart w-50">
                         <button type="submit">Add To Cart</button>
