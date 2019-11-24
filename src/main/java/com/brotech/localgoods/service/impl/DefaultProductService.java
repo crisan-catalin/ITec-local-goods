@@ -38,7 +38,7 @@ public class DefaultProductService implements ProductService {
 
     @Override
     public List<Product> findAllBySellerId(Long sellerId) {
-        return productRepository.findAllByUser(sellerId);
+        return productRepository.findAllByUserId(sellerId);
     }
 
     private Map<AddToCartForm, Product> getCartProducts(List<AddToCartForm> cartForms) {
