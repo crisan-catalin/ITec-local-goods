@@ -26,6 +26,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
+import java.util.Map;
 
 import static com.brotech.localgoods.constants.Views.ERROR_PAGE;
 import static com.brotech.localgoods.constants.Views.PRODUCT_DETAILS_PAGE;
@@ -42,6 +43,7 @@ public class ProductController {
     private static final String PRODUCTS = "productList";
     private static final String PAGE_VIEW_MODE = "page_view_mode";
     private static final String ADD_TO_CART_FORM = "addToCartForm";
+    public static final String SUBCATEGORIES = "subcategories";
 
     @Autowired
     private HttpServletRequest request;
@@ -123,6 +125,8 @@ public class ProductController {
     public String getProducts(Model model) {
         model.addAttribute(PRODUCTS, productService.getProducts());
         model.addAttribute(PAGE_VIEW_MODE, PageViewType.LIST);
+        model.addAttribute(SUBCATEGORIES, categoryRepository.findAllBySupercategoryIsNotNull());
+
         return Views.PRODUCTS_PAGE;
     }
 
@@ -130,6 +134,8 @@ public class ProductController {
     public String getProductsGrid(Model model) {
         model.addAttribute(PRODUCTS, productService.getProducts());
         model.addAttribute(PAGE_VIEW_MODE, PageViewType.GRID);
+        model.addAttribute(SUBCATEGORIES, categoryRepository.findAllBySupercategoryIsNotNull());
+
         return Views.PRODUCTS_PAGE;
     }
 
@@ -137,6 +143,8 @@ public class ProductController {
     public String getProductsMap(Model model) {
         model.addAttribute(PRODUCTS, productService.getProducts());
         model.addAttribute(PAGE_VIEW_MODE, PageViewType.MAP);
+        model.addAttribute(SUBCATEGORIES, categoryRepository.findAllBySupercategoryIsNotNull());
+
         return Views.PRODUCTS_PAGE;
     }
 

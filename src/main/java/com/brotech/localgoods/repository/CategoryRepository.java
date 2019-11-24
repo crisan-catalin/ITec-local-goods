@@ -10,4 +10,6 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
     List<Category> findAllBySupercategoryId(Long id);
 
     List<Category> findAllBySupercategoryIsNull();
+
+    List<Category> findAllBySupercategoryIsNotNull();
 }
