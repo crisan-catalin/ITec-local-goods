@@ -1,6 +1,7 @@
 package com.brotech.localgoods.controller;
 
 import com.brotech.localgoods.constants.Views;
+import com.brotech.localgoods.enums.PageViewType;
 import com.brotech.localgoods.enums.UnitType;
 import com.brotech.localgoods.form.AddToCartForm;
 import com.brotech.localgoods.form.CreateProductForm;
@@ -39,7 +40,7 @@ public class ProductController {
     private static final String CREATE_PRODUCT_FORM = "CreateProductForm";
     private static final String PRODUCT_DETAILS = "productDetails";
     private static final String PRODUCTS = "productList";
-    private static final String IS_LIST = "isList";
+    private static final String PAGE_VIEW_MODE = "page_view_mode";
     private static final String ADD_TO_CART_FORM = "addToCartForm";
 
     @Autowired
@@ -125,14 +126,21 @@ public class ProductController {
     @GetMapping("/list")
     public String getProducts(Model model) {
         model.addAttribute(PRODUCTS, productService.getProducts());
-        model.addAttribute(IS_LIST, Boolean.TRUE);
+        model.addAttribute(PAGE_VIEW_MODE, PageViewType.LIST);
         return Views.PRODUCTS_PAGE;
     }
 
     @GetMapping("/grid")
     public String getProductsGrid(Model model) {
         model.addAttribute(PRODUCTS, productService.getProducts());
-        model.addAttribute(IS_LIST, Boolean.FALSE);
+        model.addAttribute(PAGE_VIEW_MODE, PageViewType.GRID);
+        return Views.PRODUCTS_PAGE;
+    }
+
+    @GetMapping("/map")
+    public String getProductsMap(Model model) {
+        model.addAttribute(PRODUCTS, productService.getProducts());
+        model.addAttribute(PAGE_VIEW_MODE, PageViewType.MAP);
         return Views.PRODUCTS_PAGE;
     }
 
