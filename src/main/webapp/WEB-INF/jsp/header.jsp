@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="/resources/css/style.css">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.css">
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.css' rel='stylesheet' />
 </head>
 
 <body class="d-flex flex-column">
