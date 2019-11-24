@@ -24,6 +24,7 @@
             <img class="nav-logo" src="/resources/images/logo.png">
         </a>
     </div>
+    <a href="/products/list">Shop now</a>
 
     <div class="d-flex flex-column flex-md-row align-self-center align-items-center">
         <div class="mr-md-4">
