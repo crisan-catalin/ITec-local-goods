@@ -12,18 +12,18 @@
     </div>
 </div>
 
-<div class="container-fluid ${page_view_mode == 'LIST' ? 'flex-fill' : (page_view_mode == 'GRID' ? 'd-flex flex-wrap':'')}">
+<div class="container-fluid">
     <div class="row">
         <div class="col-4">
             <product:productFilter categories="${subcategories}"/>
         </div>
-        <div class="col">
+        <div class="col  ${page_view_mode == 'GRID' ? 'd-flex flex-wrap':''}">
             <c:forEach items="${productList}" var="product" varStatus="loopStatus">
                 <c:choose>
                     <c:when test="${page_view_mode == 'LIST'}">
                         <product:productListElement product="${product}"/>
                     </c:when>
-                    <c:when test="${page_view_mode == 'GRID'}">}>
+                    <c:when test="${page_view_mode == 'GRID'}">
                         <product:productGridElement product="${product}"/>
                     </c:when>
                     <c:otherwise>
