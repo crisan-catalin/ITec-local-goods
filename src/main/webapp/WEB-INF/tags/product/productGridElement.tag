@@ -15,5 +15,8 @@
         <p class="card-text">
             <span class="text-right">Starting from ${product.priceIntervals[0].price} RON</span>
         </p>
+        <a href="/products/details/${product.id}">
+            <button type="button" class="btn btn-info w-100">Details</button>
+        </a>
     </div>
 </div>
