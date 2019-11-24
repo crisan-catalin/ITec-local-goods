@@ -7,14 +7,21 @@
     <div class="section-content">
         <div class="product-details">
             <ul class="product-images">
-                <li class="preview"><img
-                        src="${empty productDetails.pictures ? '/resources/images/default.jpg' : productDetails.pictures[0].path}"
-                        alt=""></li>
+                <li class="preview">
+                    <c:choose>
+                        <c:when test="${empty productDetails.pictures}">
+                            <img src="/resources/images/default.jpg">
+                        </c:when>
+                        <c:otherwise>
+                            <img src="data:image/jpeg;base64,${productDetails.pictures[0].content}">
+                        </c:otherwise>
+                    </c:choose>
+                </li>
                 <c:if test="${productDetails.pictures.size() > 1}">
                     <c:forEach items="${productDetails.pictures}" var="picture">
                         <li>
                             <a href="javascript:void(0)"><img
-                                    src="${picture.path}"
+                                    src="data:image/jpeg;base64,${picture.content}"
                                     alt=""></a>
                         </li>
                     </c:forEach>
@@ -35,13 +42,15 @@
                     <p>${productDetails.description}</p>
                 </li>
                 <form:form method="post" action="/order-entry/add" modelAttribute="addToCartForm">
-                    <form:input type="hidden" id="productId" path="productId" value="${productDetails.id}" required="required"/>
+                    <form:input type="hidden" id="productId" path="productId" value="${productDetails.id}"
+                                required="required"/>
                     <div class="form-group">
                         <label for="quantity">Quantity:</label>
-                        <form:input class="form-control w-50" id="quantity" min="1" value="1" path="quantity" required="required"/>
+                        <form:input class="form-control w-50" id="quantity" min="1" value="1" path="quantity"
+                                    required="required"/>
                     </div>
-                    <li class="product-addtocart w-50">
-                        <button type="submit">Add To Cart</button>
+                    <li class="product-addtocart">
+                        <button type="submit" class="btn btn-success w-75">Add To Cart</button>
                     </li>
                 </form:form>
             </ul>
