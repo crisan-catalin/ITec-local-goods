@@ -15,6 +15,9 @@
                     <div class="pt-2 d-flex justify-content-between">
                         <div class="d-flex flex-column">
                             <span class="text-right">starting from ${product.priceIntervals[0].price} RON</span>
+                            <a href="/user/${product.user.id}">
+                                <span class="text-right">selled by ${product.user.name}</span>
+                            </a>
                         </div>
                     </div>
                 </div>
